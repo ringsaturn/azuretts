@@ -5,6 +5,10 @@ import (
 	"fmt"
 )
 
+type Payload interface {
+	ToXML() ([]byte, error)
+}
+
 type Prosody struct {
 	SpeechText string `xml:",chardata"`
 	Rate       string `xml:"rate,attr"`
@@ -16,12 +20,13 @@ type ExpressAs struct {
 	Style       Style   `xml:"style,attr"`
 	Styledegree string  `xml:"styledegree,attr"`
 	Prosody     Prosody `xml:"prosody"`
+	Role        Role    `xml:"role,attr"`
 }
 
 type Voice struct {
 	// Text      string    `xml:",chardata"`
 	Name      VoiceName `xml:"name,attr"`
-	ExpressAs ExpressAs `xml:"express-as"`
+	ExpressAs ExpressAs `xml:"mstts:express-as"`
 }
 
 type Speak struct {
@@ -29,9 +34,13 @@ type Speak struct {
 	// Text    string   `xml:",chardata"`
 	Version string   `xml:"version,attr"`
 	Xmlns   string   `xml:"xmlns,attr"`
-	Mstts   string   `xml:"mstts,attr"`
-	Lang    Language `xml:"lang,attr"`
+	Mstts   string   `xml:"xmlns:mstts,attr"`
+	Lang    Language `xml:"xml:lang,attr"`
 	Voice   Voice    `xml:"voice"`
+}
+
+func (s *Speak) ToXML() ([]byte, error) {
+	return xml.Marshal(s)
 }
 
 type SpeakOption func(*Speak)
@@ -62,19 +71,19 @@ func WithLanguage(lang Language) SpeakOption {
 
 func WithRate(rate float64) SpeakOption {
 	return func(s *Speak) {
-		s.Voice.ExpressAs.Prosody.Rate = fmt.Sprintf("%f", rate)
+		s.Voice.ExpressAs.Prosody.Rate = fmt.Sprintf("%.2f", rate)
 	}
 }
 
 func WithVoiceStyledegree(degree float64) SpeakOption {
 	return func(s *Speak) {
-		s.Voice.ExpressAs.Styledegree = fmt.Sprintf("%f", degree)
+		s.Voice.ExpressAs.Styledegree = fmt.Sprintf("%.2f", degree)
 	}
 }
 
-func WithVolume(volume float64) SpeakOption {
+func WithVolume(volume int) SpeakOption {
 	return func(s *Speak) {
-		s.Voice.ExpressAs.Prosody.Volume = fmt.Sprintf("%f", volume)
+		s.Voice.ExpressAs.Prosody.Volume = fmt.Sprintf("%d", volume)
 	}
 }
 
