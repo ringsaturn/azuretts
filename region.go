@@ -34,3 +34,7 @@ const (
 	RegionWestus2            Region = "westus2"
 	RegionWestus3            Region = "westus3"
 )
+
+func (r Region) String() string {
+	return string(r)
+}

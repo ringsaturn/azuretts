@@ -41,3 +41,7 @@ const (
 	AudioOutputFormat_NonStreaming_Riff44100Hz16BitMonoPcm AudioOutputFormat = "riff-44100hz-16bit-mono-pcm"
 	AudioOutputFormat_NonStreaming_Riff48Khz16BitMonoPcm   AudioOutputFormat = "riff-48khz-16bit-mono-pcm"
 )
+
+func (a AudioOutputFormat) String() string {
+	return string(a)
+}

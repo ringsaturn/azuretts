@@ -479,3 +479,7 @@ const (
 	VoiceNameZuZAThandoNeural              VoiceName = "zu-ZA-ThandoNeural"
 	VoiceNameZuZAThembaNeural              VoiceName = "zu-ZA-ThembaNeural"
 )
+
+func (v VoiceName) String() string {
+	return string(v)
+}

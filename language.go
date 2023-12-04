@@ -154,3 +154,7 @@ const (
 	LanguageZhTW         Language = "zh-TW"
 	LanguageZuZA         Language = "zu-ZA"
 )
+
+func (l Language) String() string {
+	return string(l)
+}
