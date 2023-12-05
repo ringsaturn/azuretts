@@ -145,12 +145,12 @@ func NewClient(subscriptionKey string, region Region, opts ...Option) Client {
 	c := &baseClient{
 		subscriptionKey: subscriptionKey,
 		region:          region,
+		authURL:         fmt.Sprintf(tokenRefreshAPI, region.String()),
+		ttsURL:          fmt.Sprintf(textToSpeechAPI, region.String()),
 		tokenSaver:      &memorySaver{},
 		client:          http.DefaultClient,
 		autoRefreshFn:   newAutoRefresh(),
 	}
-	c.authURL = fmt.Sprintf(tokenRefreshAPI, c.region.String())
-	c.ttsURL = fmt.Sprintf(textToSpeechAPI, c.region.String())
 	for _, opt := range opts {
 		opt(c)
 	}
