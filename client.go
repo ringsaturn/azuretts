@@ -132,13 +132,11 @@ func WithHTTPClient(client *http.Client) Option {
 type baseClient struct {
 	subscriptionKey string
 	region          Region
-
-	authURL string
-	ttsURL  string
-
-	tokenSaver    AccessTokenSaver
-	client        *http.Client
-	autoRefreshFn AutoRefresh
+	authURL         string
+	ttsURL          string
+	tokenSaver      AccessTokenSaver
+	client          *http.Client
+	autoRefreshFn   AutoRefresh
 }
 
 func NewClient(subscriptionKey string, region Region, opts ...Option) Client {
@@ -201,10 +199,23 @@ type SynthesisResponse struct {
 }
 
 func (resp *SynthesisResponse) Error() error {
-	if resp.Status != http.StatusOK {
-		return fmt.Errorf("failed to synthesis, status code: %d", resp.Status)
+	if resp.Status == http.StatusOK {
+		return nil
 	}
-	return nil
+	errorReason := http.StatusText(resp.Status)
+	switch resp.Status {
+	case http.StatusBadRequest:
+		errorReason = "A required parameter is missing, empty, or null. Or, the value passed to either a required or optional parameter is invalid. A common reason is a header that's too long."
+	case http.StatusUnauthorized:
+		errorReason = "The request is not authorized. Make sure your Speech resource key or token is valid and in the correct region."
+	case http.StatusUnsupportedMediaType:
+		errorReason = "It's possible that the wrong Content-Type value was provided. Content-Type should be set to application/ssml+xml."
+	case http.StatusTooManyRequests:
+		errorReason = "You have exceeded the quota or rate of requests allowed for your resource."
+	case http.StatusBadGateway:
+		errorReason = "There's a network or server-side problem. This status might also indicate invalid headers."
+	}
+	return fmt.Errorf("failed to synthesis, status code: %d, explain: %s", resp.Status, errorReason)
 }
 
 func (c *baseClient) GetSynthesize(ctx context.Context, req *SynthesisRequest) (*SynthesisResponse, error) {
