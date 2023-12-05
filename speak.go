@@ -40,7 +40,7 @@ type Speak struct {
 }
 
 func (s *Speak) ToXML() ([]byte, error) {
-	return xml.Marshal(s)
+	return xml.MarshalIndent(s, "", "  ")
 }
 
 type SpeakOption func(*Speak)
