@@ -1,6 +1,20 @@
 package azuretts
 
-// https://learn.microsoft.com/en-us/azure/ai-services/speech-service/rest-text-to-speech?tabs=nonstreaming#audio-outputs
+// The supported streaming and non-streaming audio formats are sent in each
+// request as the `X-Microsoft-OutputFormat` header. Each format incorporates a
+// bit rate and encoding type. The Speech service supports 48-kHz, 24-kHz,
+// 16-kHz, and 8-kHz audio outputs. Each prebuilt neural voice model is
+// available at 24kHz and high-fidelity 48kHz.
+//
+// If you select 48kHz output format, the high-fidelity voice model with 48kHz
+// will be invoked accordingly. The sample rates other than 24kHz and 48kHz can
+// be obtained through upsampling or downsampling when synthesizing, for
+// example, 44.1kHz is downsampled from 48kHz.
+// If your selected voice and output format have different bit rates, the audio
+// is resampled as necessary. You can decode the ogg-24khz-16bit-mono-opus
+// format by using the [Opus codec](https://opus-codec.org/downloads/).
+//
+// Source: https://learn.microsoft.com/en-us/azure/ai-services/speech-service/rest-text-to-speech?tabs=nonstreaming#audio-outputs
 type AudioOutputFormat string
 
 const (
