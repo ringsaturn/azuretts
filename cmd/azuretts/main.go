@@ -16,6 +16,7 @@ var (
 	styleDegreeFlag = flag.Int("styledegree", 2, "Style Degree")
 	volumeFlag      = flag.Int("volume", 100, "Volume")
 	textFlag        = flag.String("text", "你好，世界", "Text")
+	outputFormat    = flag.String("format", azuretts.AudioOutputFormat_Streaming_Audio16Khz32KbitrateMonoMp3.String(), "Output Format")
 	outputFileName  = flag.String("output", "audio.mp3", "Output File Name")
 )
 
@@ -37,7 +38,7 @@ func main() {
 	)
 	b, err := c.GetSynthesize(context.Background(), &azuretts.SynthesisRequest{
 		Speak:  speak,
-		Output: azuretts.AudioOutputFormat_Streaming_Audio16Khz32KbitrateMonoMp3,
+		Output: azuretts.AudioOutputFormat(*outputFormat),
 	})
 	if err != nil {
 		panic(err)
