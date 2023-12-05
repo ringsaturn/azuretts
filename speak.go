@@ -20,15 +20,19 @@ type ExpressAs struct {
 	Style       Style   `xml:"style,attr"`
 	Styledegree string  `xml:"styledegree,attr"`
 	Prosody     Prosody `xml:"prosody"`
-	Role        Role    `xml:"role,attr"`
+	Role        Role    `xml:"role,attr,omitempty"`
 }
 
 type Voice struct {
 	// Text      string    `xml:",chardata"`
 	Name      VoiceName `xml:"name,attr"`
 	ExpressAs ExpressAs `xml:"mstts:express-as"`
+	Effect    Effect    `xml:"effect,omitempty"`
 }
 
+// Speak is the root element of the SSML document.
+//
+// https://learn.microsoft.com/en-us/azure/ai-services/speech-service/speech-synthesis-markup-structure
 type Speak struct {
 	XMLName xml.Name `xml:"speak"`
 	// Text    string   `xml:",chardata"`
