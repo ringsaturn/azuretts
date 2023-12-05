@@ -47,6 +47,33 @@ func main() {
 }
 ```
 
+## CLI
+
+```bash
+go install github.com/ringsaturn/azuretts/cmd/azuretts
+```
+
+```console
+azuretts --help
+Usage of ./azuretts:
+  -language string
+        Language Flags (default "zh-CN")
+  -output string
+        Output File Name (default "audio.mp3")
+  -rate int
+        Rate (default 1)
+  -style string
+        Style Flags (default "chat")
+  -styledegree int
+        Style Degree (default 2)
+  -text string
+        Text (default "你好，世界")
+  -voice string
+        Voice Flags (default "zh-CN-YunxiNeural")
+  -volume int
+        Volume (default 100)
+```
+
 ## Thanks
 
 I learned a lot from <https://github.com/jesseward/azuretexttospeech>.
