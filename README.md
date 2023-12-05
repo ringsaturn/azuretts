@@ -53,6 +53,9 @@ func main() {
 go install github.com/ringsaturn/azuretts/cmd/azuretts
 ```
 
+NOTE: Please setup environment variables `SPEECH_KEY` and `SPEECH_REGION` before
+running the CLI.
+
 ```console
 azuretts --help
 Usage of ./azuretts:
