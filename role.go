@@ -4,14 +4,14 @@ package azuretts
 type Role string
 
 const (
-	RoleGirl             Role = "Girl"
-	RoleBoy              Role = "Boy"
-	RoleYoungAdultFemale Role = "YoungAdultFemale"
-	RoleYoungAdultMale   Role = "YoungAdultMale"
-	RoleOlderAdultFemale Role = "OlderAdultFemale"
-	RoleOlderAdultMale   Role = "OlderAdultMale"
-	RoleSeniorFemale     Role = "SeniorFemale"
-	RoleSeniorMale       Role = "SeniorMale"
+	RoleGirl             Role = "Girl"             // The voice imitates a girl.
+	RoleBoy              Role = "Boy"              // The voice imitates a boy.
+	RoleYoungAdultFemale Role = "YoungAdultFemale" // The voice imitates a young adult female.
+	RoleYoungAdultMale   Role = "YoungAdultMale"   // The voice imitates a young adult male.
+	RoleOlderAdultFemale Role = "OlderAdultFemale" // The voice imitates an older adult female.
+	RoleOlderAdultMale   Role = "OlderAdultMale"   // The voice imitates an older adult male.
+	RoleSeniorFemale     Role = "SeniorFemale"     // The voice imitates a senior female.
+	RoleSeniorMale       Role = "SeniorMale"       // The voice imitates a senior male.
 )
 
 func (r Role) String() string {
