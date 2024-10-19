@@ -7,42 +7,24 @@ on:
     branches: [main]
 
 jobs:
-  golangci:
-    name: golangci-lint
-    strategy:
-      matrix:
-        go: ["1.21"]
-    permissions:
-      contents: read
-      pull-requests: read
+  build:
     runs-on: ubuntu-latest
-    timeout-minutes: 15
     steps:
       - uses: actions/checkout@v4
 
       - name: Set up Go
         uses: actions/setup-go@v5
         with:
-          go-version: ${{ matrix.go }}
+          go-version-file: go.mod
 
       - name: golangci-lint
         uses: golangci/golangci-lint-action@v6
         with:
           version: latest
           args: --timeout=5m
-
-  build:
-    runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        go: ["1.20", "1.21"]
-    steps:
-      - uses: actions/checkout@v4
-
-      - name: Set up Go
-        uses: actions/setup-go@v5
-        with:
-          go-version: ${{ matrix.go }}
+          skip-cache: true
+          skip-pkg-cache: true
+          skip-build-cache: true
 
       - name: Install go pkgs
         run: |
