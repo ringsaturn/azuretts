@@ -4,7 +4,7 @@ import (
 	"context"
 	"os"
 
-	"github.com/ringsaturn/azuretts"
+	"github.com/caiyunapp/azuretts"
 )
 
 type MultiSpeak struct {

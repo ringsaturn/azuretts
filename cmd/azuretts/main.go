@@ -5,7 +5,7 @@ import (
 	"flag"
 	"os"
 
-	"github.com/ringsaturn/azuretts"
+	"github.com/caiyunapp/azuretts"
 )
 
 var (

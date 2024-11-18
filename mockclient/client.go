@@ -8,7 +8,7 @@ import (
 	context "context"
 	reflect "reflect"
 
-	azuretts "github.com/ringsaturn/azuretts"
+	azuretts "github.com/caiyunapp/azuretts"
 	gomock "go.uber.org/mock/gomock"
 )
 

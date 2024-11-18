@@ -3,7 +3,7 @@
 ## Quick Start
 
 ```bash
-go get github.com/ringsaturn/azuretts
+go get github.com/caiyunapp/azuretts
 ```
 
 ```go
@@ -13,7 +13,7 @@ import (
 	"context"
 	"os"
 
-	"github.com/ringsaturn/azuretts"
+	"github.com/caiyunapp/azuretts"
 )
 
 func main() {
@@ -50,7 +50,7 @@ func main() {
 ## CLI
 
 ```bash
-go install github.com/ringsaturn/azuretts/cmd/azuretts
+go install github.com/caiyunapp/azuretts/cmd/azuretts
 ```
 
 NOTE: Please setup environment variables `SPEECH_KEY` and `SPEECH_REGION` before

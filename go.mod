@@ -1,4 +1,4 @@
-module github.com/ringsaturn/azuretts
+module github.com/caiyunapp/azuretts
 
 go 1.23
 

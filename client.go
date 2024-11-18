@@ -13,7 +13,7 @@ import (
 const (
 	textToSpeechAPI = "https://%s.tts.speech.microsoft.com/cognitiveservices/v1"
 	tokenRefreshAPI = "https://%s.api.cognitive.microsoft.com/sts/v1.0/issueToken"
-	userAgent       = "github.com/ringsaturn/azuretts@v0"
+	userAgent       = "github.com/caiyunapp/azuretts@v0"
 
 	// https://learn.microsoft.com/en-us/azure/api-management/api-management-subscriptions
 	subscriptionKeyHeader = "Ocp-Apim-Subscription-Key"

@@ -3,7 +3,7 @@ package azuretts_test
 import (
 	"testing"
 
-	"github.com/ringsaturn/azuretts"
+	"github.com/caiyunapp/azuretts"
 )
 
 func BenchmarkToXML(b *testing.B) {
